@@ -8,7 +8,11 @@ unit_test: # Name of the lane
   stage: test
   script:
     - flutter test --coverage
-
+  artifacts:
+    paths:
+      - coverage/
+  coverage: '/^lines\.+: |\d+\.?\d+\%/'
+  
 coverage_test: # Name of the lane
   image: gableroux/flutter:v1.2.1
   stage: build_coverage
