@@ -60,6 +60,25 @@ android {
             }
         }
     }
+
+    flavorDimensions "flavors"
+
+    productFlavors {
+        dev {
+            dimension "flavors"
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+        }
+        qa {
+            dimension "flavors"
+            applicationIdSuffix ".qa"
+            versionNameSuffix "-qa"
+        }
+        prod {
+            dimension "flavors"
+        }
+    }
+
 }
 
 flutter {
