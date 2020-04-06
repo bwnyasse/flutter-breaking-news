@@ -1,5 +1,6 @@
 stages:
   - test
+  - build_coverage
   - deploy_coverage
 
 unit_test: # Name of the lane
@@ -10,7 +11,7 @@ unit_test: # Name of the lane
 
 coverage_test: # Name of the lane
   image: gableroux/flutter:v1.2.1
-  stage: test
+  stage: build_coverage
   script:
     - genhtml coverage/lcov.info --output=coverage
     - bash <(curl -s https://codecov.io/bash) -t "${CODECOV_TOKEN}"
