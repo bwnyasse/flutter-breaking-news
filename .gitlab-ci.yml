@@ -1,6 +1,5 @@
 stages:
   - test
-  - build
   - deploy_coverage
 
 
@@ -16,11 +15,11 @@ unit_test: # Name of the lane
       - coverage/
   coverage: '/^lines\.+: |\d+\.?\d+\%/'
 
-build_android:
-  image: cirrusci/flutter
-  stage: build
-  script:
-    - flutter build apk --debug
+#build_android:
+#  image: cirrusci/flutter
+#  stage: build
+#  script:
+#    - flutter build apk --debug
 
 pages:
   image: alpine
