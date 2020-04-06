@@ -2,13 +2,17 @@ stages:
   - test
   - deploy_coverage
 
-
 unit_test: # Name of the lane
   image: cirrusci/flutter:v1.12.13-hotfix.8
   stage: test
   script:
     - flutter test --coverage
-    #- genhtml coverage/lcov.info --output=coverage
+
+coverage_test: # Name of the lane
+  image: gableroux/flutter:v1.2.1
+  stage: test
+  script:
+    - genhtml coverage/lcov.info --output=coverage
     - bash <(curl -s https://codecov.io/bash) -t "${CODECOV_TOKEN}"
   artifacts:
     paths:
