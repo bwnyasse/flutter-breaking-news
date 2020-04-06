@@ -12,7 +12,9 @@ unit_test: # Name of the lane
     paths:
       - coverage/
   coverage: '/^lines\.+: |\d+\.?\d+\%/'
-  
+  except:
+    - /^release-.*$/
+
 coverage_test: # Name of the lane
   image: gableroux/flutter:v1.2.1
   stage: build_coverage
@@ -23,7 +25,9 @@ coverage_test: # Name of the lane
     paths:
       - coverage/
   coverage: '/^lines\.+: |\d+\.?\d+\%/'
-
+  except:
+    - /^release-.*$/
+    
 #build_android:
 #  image: cirrusci/flutter
 #  stage: build
