@@ -12,4 +12,8 @@ to display how to build a complete flutter breaking news application.
 
 ## Getting Started
 
+
+[Understand Flutter Flavors](https://medium.com/@animeshjain/build-flavors-in-flutter-android-and-ios-with-different-firebase-projects-per-flavor-27c5c5dac10b)
+[Adding way to switch app name on ISO](https://www.buddybuild.com/blog/running-multiple-schemes-of-ios-apps)
+[Copy to right file](https://www.tengio.com/blog/multiple-firebase-environments-with-flutter/)
 TODO.

@@ -1,4 +1,6 @@
 PODS:
+  - device_info (0.0.1):
+    - Flutter
   - Firebase/Analytics (6.21.0):
     - Firebase/Core
   - Firebase/Auth (6.21.0):
@@ -94,6 +96,7 @@ PODS:
   - PromisesObjC (1.2.8)
 
 DEPENDENCIES:
+  - device_info (from `.symlinks/plugins/device_info/ios`)
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_auth_web (from `.symlinks/plugins/firebase_auth_web/ios`)
@@ -120,6 +123,8 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
+  device_info:
+    :path: ".symlinks/plugins/device_info/ios"
   firebase_analytics:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_auth:
@@ -134,6 +139,7 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
+  device_info: cbf09d2ec12aa7110e0b09fabe54b5bd6c8efe74
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
   firebase_analytics: dacdcfc524d722fff13dcff942f0dfa47e6be567
   firebase_auth: 4ee3a54d3f09434c508c284a62f895a741a30637

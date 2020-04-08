@@ -1,0 +1,15 @@
+//
+//  dev.xcconfig
+//  Runner
+//
+//  Created by Boris-Wilfried Nyasse on 07/04/2020.
+//  Copyright © 2020 The Chromium Authors. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+#include "Generated.xcconfig"
+BUNDLE_ID_SUFFIX=.dev
+PRODUCT_BUNDLE_IDENTIFIER=com.stacklabs.FlutterBreakingNews.dev
+FLUTTER_TARGET=lib/main_dev.dart
+APP_NAME=[dev] SL-News
