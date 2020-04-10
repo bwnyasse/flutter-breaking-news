@@ -1,0 +1,37 @@
+# update_fastlane
+
+###########
+## ANDROID
+default_platform(:android)
+
+platform :android do
+    desc "Submit a new android build to the Firebase App Distribution"
+    gradle(
+        task: 'assemble',
+        build_type: 'Release',
+        flags: "-Ptarget=lib/main_qa.dart",
+        project_dir: 'android/'
+    )
+    lane :qa do
+        firebase_app_distribution(
+            app: ENV["FIREBASE_ANDROID_TEST_APP_ID"],
+            firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+            apk_path: "build/app/outputs/apk/qa/release/app-qa-release.apk",
+            release_notes_file: "distribution/release-notes.txt",
+            testers_file:  "distribution/testers.txt"
+
+        )
+        finish_build
+    end
+end
+
+def finish_build
+    if is_ci?
+      add_git_tag(
+        grouping: "fastlane-builds",
+        prefix: "release-v",
+        postfix: "-qa",
+        build_number: ENV["BUILD_NUMBER"]
+      )
+    end
+end

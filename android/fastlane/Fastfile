@@ -1,0 +1,34 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+    desc "New android build to the Firebase app distribution"
+    gradle(
+        task: 'assemble',
+        build_type: 'Release',
+        flags: "-Ptarget=lib/main_qa.dart"
+    )
+    lane :qa do
+        firebase_app_distribution(
+            app: "1:879559078407:android:1c803be2a950c98dcff0a2",
+            testers: "risbonyasse@gmail.com",
+            release_notes: "TODO:Test Release notes Fastfile",
+            firebase_cli_path: "/usr/local/bin/firebase",
+            apk_path: "../build/app/outputs/apk/qa/release/app-qa-release.apk"
+        )
+    end
+end

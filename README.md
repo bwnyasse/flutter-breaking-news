@@ -17,3 +17,7 @@ to display how to build a complete flutter breaking news application.
 [Adding way to switch app name on ISO](https://www.buddybuild.com/blog/running-multiple-schemes-of-ios-apps)
 [Copy to right file](https://www.tengio.com/blog/multiple-firebase-environments-with-flutter/)
 TODO.
+
+flutter build apk --release -t lib/main_qa.dart --build-name=1.0.0 --build-number=1 --flavor qa
+
+flutter build ios --no-codesign --release -t lib/main_qa.dart --build-name=1.0.0 --build-number=1 --flavor qa
