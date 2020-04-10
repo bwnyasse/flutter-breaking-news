@@ -1,9 +1,13 @@
-[![Flutter](https://img.shields.io/static/v1?label=Flutter&message=ANDROID|IOS&color=informational?style=plastic&logo=flutter&logoColor=blue)](https://img.shields.io/static/v1?label=Flutter&message=ANDROID|IOS&color=blue&logo=flutter&logoColor=blue)
 [![pipeline status](https://gitlab.com/bwnyasse/flutter-breaking-news/badges/master/pipeline.svg)](https://gitlab.com/bwnyasse/flutter-breaking-news/commits/master)
 [![coverage report](https://gitlab.com/bwnyasse/flutter-breaking-news/badges/master/coverage.svg)](https://gitlab.com/bwnyasse/flutter-breaking-news/commits/master)
 [![codecov](https://codecov.io/gl/bwnyasse/flutter-breaking-news/branch/master/graph/badge.svg)](https://codecov.io/gl/bwnyasse/flutter-breaking-news)
-[![Codemagic build status](https://api.codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/status_badge.svg)](https://codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/latest_build)
 [![License](https://img.shields.io/static/v1?label=Licence&message=MIT&color=lightgrey)](https://img.shields.io/static/v1?label=Licence&message=MIT&color=lightgrey)
+
+| Platform | Deploy to Firebase App Distribtion | Tests |
+|--------------------|-------|------------------|
+| [![Flutter](https://img.shields.io/static/v1?label=Flutter&message=ANDROID-IOS&color=informational?style=plastic&logo=flutter&logoColor=blue)](https://img.shields.io/static/v1?label=Flutter&message=ANDROID-IOS&color=blue&logo=flutter&logoColor=blue)| [![Codemagic build status](https://api.codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/status_badge.svg)](https://codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/latest_build) | [![Codemagic build status](https://api.codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/status_badge.svg)](https://codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/latest_build) |
+
+
 # flutter_breaking_news
 
 Stack Labs Open Source project
@@ -21,3 +25,4 @@ TODO.
 flutter build apk --release -t lib/main_qa.dart --build-name=1.0.0 --build-number=1 --flavor qa
 
 flutter build ios --no-codesign --release -t lib/main_qa.dart --build-name=1.0.0 --build-number=1 --flavor qa
+
