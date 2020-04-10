@@ -50,3 +50,10 @@ google-services.json
 
 # CodeCov related
 coverage/
+
+# Service account
+sa/
+
+# General thing to ignore
+ignore/
+*base64.txt
