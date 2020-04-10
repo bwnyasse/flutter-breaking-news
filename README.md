@@ -1,7 +1,8 @@
-[![pipeline status](https://gitlab.com/bwnyasse/flutter-breaking-news/badges/master/pipeline.svg)](https://gitlab.com/bwnyasse/flutter-breaking-news/commits/master)
-[![coverage report](https://gitlab.com/bwnyasse/flutter-breaking-news/badges/master/coverage.svg)](https://gitlab.com/bwnyasse/flutter-breaking-news/commits/master)
-[![codecov](https://codecov.io/gl/bwnyasse/flutter-breaking-news/branch/master/graph/badge.svg)](https://codecov.io/gl/bwnyasse/flutter-breaking-news)
 [![License](https://img.shields.io/static/v1?label=Licence&message=MIT&color=lightgrey)](https://img.shields.io/static/v1?label=Licence&message=MIT&color=lightgrey)
+
+| Gitlab CI | Code Coverage | Coverage with codecov.io |
+|--------------------|-------|------------------|
+|[![pipeline status](https://gitlab.com/bwnyasse/flutter-breaking-news/badges/master/pipeline.svg)](https://gitlab.com/bwnyasse/flutter-breaking-news/commits/master)| [![coverage report](https://gitlab.com/bwnyasse/flutter-breaking-news/badges/master/coverage.svg)](https://gitlab.com/bwnyasse/flutter-breaking-news/commits/master) |[![codecov](https://codecov.io/gl/bwnyasse/flutter-breaking-news/branch/master/graph/badge.svg)](https://codecov.io/gl/bwnyasse/flutter-breaking-news) |
 
 | Platform | Deploy to Firebase App Distribtion | Tests |
 |--------------------|-------|------------------|
