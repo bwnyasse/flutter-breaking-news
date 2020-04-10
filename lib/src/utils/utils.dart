@@ -1,4 +1,3 @@
-library utils;
-
-export 'app_utils.dart';
-export 'device_utils.dart';
+export 'impl/app_utils.dart';
+export 'impl/device_utils.dart';
+export 'impl/app_theme.dart';

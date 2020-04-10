@@ -1,7 +1,7 @@
 library config;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_breaking_news/src/utils/app_utils.dart' as app_utils;
+import 'package:flutter_breaking_news/src/utils/utils.dart' as app_utils;
 
 ///
 /// RUNNING ENVIRONMENT

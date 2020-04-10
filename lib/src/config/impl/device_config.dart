@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_breaking_news/src/config/flavor_config.dart';
+import 'package:flutter_breaking_news/src/config/config.dart';
 import 'package:flutter_breaking_news/src/utils/utils.dart' as utils;
 
 class DeviceConfig extends StatelessWidget {
