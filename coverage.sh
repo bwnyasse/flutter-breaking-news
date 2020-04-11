@@ -1,3 +1,6 @@
+#!/usr/bin/env sh
+set -e
+
 ## ONLY FOR MAC OR LINUX 
 
 

@@ -3,7 +3,7 @@ import 'package:flutter_breaking_news/src/app/models/models.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../common.dart';
+import '../../common.dart';
 
 
 

@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breaking_news/src/app/services/services.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
 ///
@@ -8,11 +8,11 @@ import 'package:provider/provider.dart';
 /// Object as singleton
 ///
 class AppProvider extends StatelessWidget {
-  final Dio dio;
+  final Client httpClient;
   final Widget child;
 
   AppProvider({
-    @required this.dio,
+    @required this.httpClient,
     @required this.child,
   });
 
@@ -21,6 +21,11 @@ class AppProvider extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<AuthService>(create: (_) => AuthService()),
+        Provider<LocalStorageService>(create: (_) => LocalStorageService()),
+        ProxyProvider<LocalStorageService, ApiService>(
+          update: (_, localStorageService, __) =>
+              ApiService(httpClient, localStorageService),
+        ),
       ],
       child: child,
     );
