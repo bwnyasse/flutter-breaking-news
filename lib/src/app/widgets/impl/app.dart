@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_breaking_news/src/app/blocs/blocs.dart';
+import 'package:flutter_breaking_news/src/app/models/models.dart';
 import 'package:flutter_breaking_news/src/app/services/services.dart';
-import 'package:flutter_breaking_news/src/app/widgets/impl/news/news.dart';
 import 'package:flutter_breaking_news/src/app/widgets/widgets.dart';
 import 'package:flutter_breaking_news/src/utils/utils.dart';
 import 'package:provider/provider.dart';
@@ -74,7 +74,16 @@ class MyApp extends StatelessWidget {
           }
 
           if (state is AuthSuccessState) {
-            return NewsScreen();
+            return BlocProvider(
+              create: (context) => DataBloc(
+                service: Provider.of<ApiService>(
+                  context,
+                  listen: false,
+                ),
+              ),
+              child: Provider<CurrentUser>(
+                  create: (_) => state.user, child: HomeScreen()),
+            );
           }
           return SplashScreen();
         },

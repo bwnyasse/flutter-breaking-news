@@ -20,9 +20,8 @@ dependencies:
   # Helps to implement equality without needing to explicitly override == and hashCode.
   equatable: ^1.1.1
 
-  # A powerful Http client for Dart, which supports interceptors, FormData, Request Cancellation,
-  # File Downloading, Timeout etc.
-  dio: ^3.0.9
+  # A composable, multi-platform, Future-based API for HTTP requests.
+  http: ^0.12.0+4
 
   # Flutter widgets that make it easy to implement the BLoC design pattern.
   flutter_bloc: ^3.2.0
@@ -48,6 +47,16 @@ dependencies:
 
   # Building card based settings forms.
   flutter_settings: ^1.0.2
+
+  flag: ^1.0.3
+
+  shared_preferences: ^0.5.6+3
+
+  universal_io: ^1.0.1
+
+  url_launcher: ^5.4.2
+
+  flutter_webview_plugin: ^0.3.10+2
 
 dev_dependencies:
   flutter_test:
