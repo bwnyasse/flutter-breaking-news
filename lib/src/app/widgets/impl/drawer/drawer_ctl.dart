@@ -13,6 +13,7 @@ class DrawerCtl extends StatefulWidget {
     this.menuView,
     this.drawerIsOpen,
     this.screenIndex,
+    this.scrollOffset = 0.0,
   }) : super(key: key);
 
   final double drawerWidth;
@@ -23,22 +24,23 @@ class DrawerCtl extends StatefulWidget {
   final AnimatedIconData animatedIconData;
   final Widget menuView;
   final DrawerIndex screenIndex;
+  final double scrollOffset;
 
   @override
   _DrawerCtlState createState() => _DrawerCtlState();
 }
 
-class _DrawerCtlState extends State<DrawerCtl>
-    with TickerProviderStateMixin {
+class _DrawerCtlState extends State<DrawerCtl> with TickerProviderStateMixin {
   ScrollController scrollController;
   AnimationController iconAnimationController;
   AnimationController animationController;
 
-  double scrolloffset = 0.0;
+  double scrollOffset;
   bool isSetDawer = false;
 
   @override
   void initState() {
+    scrollOffset = widget.scrollOffset;
     animationController = AnimationController(
         duration: const Duration(milliseconds: 2000), vsync: this);
     iconAnimationController = AnimationController(
@@ -50,9 +52,9 @@ class _DrawerCtlState extends State<DrawerCtl>
     scrollController
       ..addListener(() {
         if (scrollController.offset <= 0) {
-          if (scrolloffset != 1.0) {
+          if (scrollOffset != 1.0) {
             setState(() {
-              scrolloffset = 1.0;
+              scrollOffset = 1.0;
               try {
                 widget.drawerIsOpen(true);
               } catch (_) {}
@@ -67,9 +69,9 @@ class _DrawerCtlState extends State<DrawerCtl>
               duration: const Duration(milliseconds: 0),
               curve: Curves.linear);
         } else if (scrollController.offset <= widget.drawerWidth) {
-          if (scrolloffset != 0.0) {
+          if (scrollOffset != 0.0) {
             setState(() {
-              scrolloffset = 0.0;
+              scrollOffset = 0.0;
               try {
                 widget.drawerIsOpen(false);
               } catch (_) {}
@@ -106,7 +108,7 @@ class _DrawerCtlState extends State<DrawerCtl>
         controller: scrollController,
         scrollDirection: Axis.horizontal,
         physics: const PageScrollPhysics(parent: ClampingScrollPhysics()),
-        // scrolloffset == 1.0
+        // scrollOffset == 1.0
         //     ? PageScrollPhysics(parent: ClampingScrollPhysics())
         //     : PageScrollPhysics(parent: NeverScrollableScrollPhysics()),
         child: Opacity(
@@ -160,15 +162,16 @@ class _DrawerCtlState extends State<DrawerCtl>
                     child: Stack(
                       children: <Widget>[
                         IgnorePointer(
-                          ignoring: scrolloffset == 1 || false,
+                          ignoring: scrollOffset == 1 || false,
                           child: widget.screenView == null
                               ? Container(
                                   color: Colors.white,
                                 )
                               : widget.screenView,
                         ),
-                        scrolloffset == 1.0
+                        scrollOffset == 1.0
                             ? InkWell(
+                                key: Key('drawerctl-inkwell-1'),
                                 onTap: () {
                                   onDrawerClick();
                                 },
@@ -184,6 +187,7 @@ class _DrawerCtlState extends State<DrawerCtl>
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
+                                key: Key('drawerctl-inkwell-2'),
                                 borderRadius: BorderRadius.circular(
                                     AppBar().preferredSize.height),
                                 child: Center(

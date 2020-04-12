@@ -81,7 +81,6 @@ dev_dependencies:
   # The Font Awesome Icon pack available as Flutter Icons.
   font_awesome_flutter: ^8.7.0
 
-
 # The following section is specific to Flutter.
 flutter:
 

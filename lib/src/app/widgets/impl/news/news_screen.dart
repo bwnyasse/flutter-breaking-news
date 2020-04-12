@@ -1,16 +1,9 @@
 import 'package:flag/flag.dart';
-import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_breaking_news/src/app/blocs/blocs.dart';
-import 'package:flutter_breaking_news/src/app/models/models.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_breaking_news/src/app/services/services.dart';
 import 'package:flutter_breaking_news/src/app/widgets/widgets.dart';
 import 'package:flutter_breaking_news/src/utils/utils.dart';
-import 'package:universal_io/prefer_universal/io.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 import 'package:provider/provider.dart';
 
 class NewsScreen extends StatefulWidget {
@@ -133,7 +126,7 @@ class _NewsScreenState extends State<NewsScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 5.0, left: 18, right: 16),
             child: Text(
-              getStrToday(),
+              getStrDate(DateTime.now()),
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontWeight: FontWeight.w400,

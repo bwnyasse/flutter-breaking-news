@@ -7,7 +7,7 @@ unit_test: # Name of the lane
   image: cirrusci/flutter:v1.12.13-hotfix.8
   stage: test
   script:
-    - flutter test --coverage
+    - /bin/sh coverage.sh -i # launch the file in ci env mode
   artifacts:
     paths:
       - coverage/
@@ -19,7 +19,8 @@ coverage_test: # Name of the lane
   image: gableroux/flutter:v1.2.1
   stage: build_coverage
   script:
-    - genhtml coverage/lcov.info --output=coverage
+    - echo "${CODECOV_TOKEN}"
+    - genhtml -o coverage coverage/lcov.info
     - bash <(curl -s https://codecov.io/bash) -t "${CODECOV_TOKEN}"
   artifacts:
     paths:
@@ -28,12 +29,6 @@ coverage_test: # Name of the lane
   except:
     - /^release-.*$/
     
-#build_android:
-#  image: cirrusci/flutter
-#  stage: build
-#  script:
-#    - flutter build apk --debug
-
 pages:
   image: alpine
   stage: deploy_coverage

@@ -10,9 +10,13 @@ import 'package:provider/provider.dart';
 class AppProvider extends StatelessWidget {
   final Client httpClient;
   final Widget child;
+  final AuthService authService;
+  final LocalStorageService localStorageService;
 
   AppProvider({
     @required this.httpClient,
+    this.authService,
+    this.localStorageService,
     @required this.child,
   });
 
@@ -20,8 +24,9 @@ class AppProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<AuthService>(create: (_) => AuthService()),
-        Provider<LocalStorageService>(create: (_) => LocalStorageService()),
+        Provider<AuthService>(create: (_) => authService ?? AuthService()),
+        Provider<LocalStorageService>(
+            create: (_) => localStorageService ?? LocalStorageService()),
         ProxyProvider<LocalStorageService, ApiService>(
           update: (_, localStorageService, __) =>
               ApiService(httpClient, localStorageService),

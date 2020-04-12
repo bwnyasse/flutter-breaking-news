@@ -4,6 +4,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocalStorageService {
   static const String apiKey = 'api';
   static const String countryFlagKey = 'countryFlag';
+  final  Future<SharedPreferences> _sharedPreferences;
+
+  LocalStorageService({
+    Future<SharedPreferences> sharedPreferences
+  })  : _sharedPreferences = sharedPreferences ?? SharedPreferences.getInstance();
+
+  List<Country> countries() =>
+      CountryList.fromJson(_countriesAsJson()).countries;
 
   // API KEY
   Future<void> setApiKey(String keyValue) async =>
@@ -27,16 +35,14 @@ class LocalStorageService {
   }
 
   dynamic _get(String key) async {
-    var value = (await SharedPreferences.getInstance()).get(key);
+    var value = (await _sharedPreferences).get(key);
     return value;
   }
 
   Future<void> _save(String key, String content) async {
-    (await SharedPreferences.getInstance()).setString(key, content);
+    (await _sharedPreferences).setString(key, content);
   }
 
-  List<Country> countries() =>
-      CountryList.fromJson(_countriesAsJson()).countries;
 
   // Countries as JSON
   Map<String, dynamic> _countriesAsJson() => <String, dynamic>{

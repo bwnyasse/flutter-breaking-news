@@ -49,7 +49,7 @@ main() {
 
   group('signInWithGoogle', () {
     test('success', () async {
-      FirebaseUser user = await service.signInWithGoogle();
+      CurrentUser user = await service.signInWithGoogle();
       expect(user.displayName, 'Bob');
     });
     test('error', () async {

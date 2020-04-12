@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_breaking_news/src/utils/utils.dart';
 import 'package:intl/intl.dart';
 
+
+//// FUNCTIONS - UTILS
 ///
-///
-///
-String enumName(String enumToString) {
-  List<String> paths = enumToString.split(".");
-  return paths[paths.length - 1];
-}
 
 Widget appBarUI() {
   return Padding(
@@ -53,20 +49,14 @@ Widget appBarUI() {
   );
 }
 
-class HexColor extends Color {
-  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
-
-  static int _getColorFromHex(String hexColor) {
-    hexColor = hexColor.toUpperCase().replaceAll('#', '');
-    if (hexColor.length == 6) {
-      hexColor = 'FF' + hexColor;
-    }
-    return int.parse(hexColor, radix: 16);
-  }
+String enumName(String enumToString) {
+  List<String> paths = enumToString.split(".");
+  return paths[paths.length - 1];
 }
 
-String getStrToday() {
-  var today = DateFormat().add_yMMMMd().format(DateTime.now());
+
+String getStrDate(DateTime date) {
+  var today = DateFormat().add_yMMMMd().format(date);
   var strDay = today.split(" ")[1].replaceFirst(',', '');
   if (strDay == '1') {
     strDay = strDay + "st";

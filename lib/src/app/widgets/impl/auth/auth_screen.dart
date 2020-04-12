@@ -12,24 +12,27 @@ import 'package:provider/provider.dart';
 class AuthLogoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        'Sign Out',
-        style: TextStyle(
-          fontFamily: AppTheme.fontName,
-          fontWeight: FontWeight.w600,
-          fontSize: 16,
-          color: AppTheme.darkText,
+    return Material(
+      child: ListTile(
+        key:Key('logout'),
+        title: Text(
+          'Sign Out',
+          style: TextStyle(
+            fontFamily: AppTheme.fontName,
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+            color: AppTheme.darkText,
+          ),
+          textAlign: TextAlign.left,
         ),
-        textAlign: TextAlign.left,
+        trailing: Icon(
+          Icons.power_settings_new,
+          color: Colors.red,
+        ),
+        onTap: () {
+          BlocProvider.of<AuthBloc>(context).add(AuthFailedEvent());
+        },
       ),
-      trailing: Icon(
-        Icons.power_settings_new,
-        color: Colors.red,
-      ),
-      onTap: () {
-        BlocProvider.of<AuthBloc>(context).add(AuthFailedEvent());
-      },
     );
   }
 }
