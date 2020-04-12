@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_breaking_news/src/app/blocs/blocs.dart';
 import 'package:flutter_breaking_news/src/app/models/models.dart';
 import 'package:flutter_breaking_news/src/app/widgets/widgets.dart';
 import 'package:flutter_breaking_news/src/utils/utils.dart';
@@ -13,6 +11,7 @@ enum DrawerIndex {
 }
 
 class DrawerListItem {
+  final keyValue;
   final String labelName;
   final Icon icon;
   final bool isAssetsImage;
@@ -20,6 +19,7 @@ class DrawerListItem {
   final DrawerIndex index;
 
   DrawerListItem({
+    this.keyValue,
     this.isAssetsImage = false,
     this.labelName = '',
     this.icon,
@@ -31,16 +31,19 @@ class DrawerListItem {
 List<DrawerListItem> buildStaticDrawerList() {
   return <DrawerListItem>[
     DrawerListItem(
+      keyValue:'drawer-news-item',
       index: DrawerIndex.NEWS,
       labelName: 'News',
       icon: Icon(Icons.list),
     ),
     DrawerListItem(
+      keyValue:'drawer-settings-item',
       index: DrawerIndex.SETTINGS,
       labelName: 'Settings',
       icon: Icon(Icons.settings),
     ),
     DrawerListItem(
+      keyValue:'drawer-aboutus-item',
       index: DrawerIndex.ABOUT,
       labelName: 'About Us',
       icon: Icon(Icons.info),
@@ -122,7 +125,10 @@ class _AppDrawerState extends State<AppDrawer> {
                             child: ClipRRect(
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(60.0)),
-                              child: Image.network(user.photoUrl),
+                              child: (user.photoUrl == null ||
+                                      user.photoUrl == 'fake-photo')
+                                  ? Text('')
+                                  : Image.network(user.photoUrl),
                             ),
                           ),
                         ),
@@ -196,10 +202,11 @@ class _AppDrawerState extends State<AppDrawer> {
     return Material(
       color: Colors.transparent,
       child: InkWell(
+        key: Key(listData.keyValue),
         splashColor: Colors.grey.withOpacity(0.1),
         highlightColor: Colors.transparent,
         onTap: () {
-          navigationtoScreen(listData.index);
+          navigationToScreen(listData.index);
         },
         child: Stack(
           children: <Widget>[
@@ -294,7 +301,7 @@ class _AppDrawerState extends State<AppDrawer> {
     );
   }
 
-  Future<void> navigationtoScreen(DrawerIndex indexScreen) async {
+  Future<void> navigationToScreen(DrawerIndex indexScreen) async {
     widget.callBackIndex(indexScreen);
   }
 }

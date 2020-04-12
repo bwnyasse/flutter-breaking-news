@@ -18,8 +18,6 @@ class Source extends Equatable {
 
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SourceToJson(this);
-
   @override
   List<Object> get props => [
         this.id,

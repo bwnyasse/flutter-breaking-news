@@ -28,8 +28,18 @@ class SplashScreen extends StatelessWidget {
 ///
 class MyApp extends StatelessWidget {
   final initStateToUse;
+  final AuthBloc authBloc;
+  final DataBloc dataBloc;
+  final AuthService authService;
+  final ApiService apiService;
 
-  MyApp({this.initStateToUse});
+  MyApp({
+    this.initStateToUse,
+    this.authBloc,
+    this.dataBloc,
+    this.authService,
+    this.apiService,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +55,14 @@ class MyApp extends StatelessWidget {
     ));
 
     return BlocProvider(
-      create: (context) => AuthBloc(
-          //auth service
-          service: Provider.of<AuthService>(
-            context,
-            listen: false,
-          ),
-          initStateToUse: initStateToUse)
+      create: (context) => authBloc ??
+          AuthBloc(
+              //auth service
+              service: authService??Provider.of<AuthService>(
+                context,
+                listen: false,
+              ),
+              initStateToUse: initStateToUse)
         ..add(AuthInitEvent()),
       child: _buildMaterialApp(),
     );
@@ -75,8 +86,8 @@ class MyApp extends StatelessWidget {
 
           if (state is AuthSuccessState) {
             return BlocProvider(
-              create: (context) => DataBloc(
-                service: Provider.of<ApiService>(
+              create: (context) => dataBloc??DataBloc(
+                service: apiService??Provider.of<ApiService>(
                   context,
                   listen: false,
                 ),

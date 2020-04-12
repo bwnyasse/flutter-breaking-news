@@ -25,7 +25,7 @@ class AuthService {
   ///
   /// User wants to sign in with Google Credentials
   ///
-  Future<FirebaseUser> signInWithGoogle() async {
+  Future<CurrentUser> signInWithGoogle() async {
     try {
       await _googleSignIn.signIn();
 
@@ -37,7 +37,7 @@ class AuthService {
         idToken: googleAuth.idToken,
       );
       await _firebaseAuth.signInWithCredential(credential);
-      return _firebaseAuth.currentUser();
+      return await user();
     } catch (error) {
       throw AuthServiceException('signInWithGoogle error', error);
     }

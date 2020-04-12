@@ -49,8 +49,8 @@ main() {
         ];
 
         authBloc.add(AuthInitEvent());
-
-        expectLater(
+        expectLater
+        (
           authBloc,
           emitsInOrder(expectedResponse),
         );

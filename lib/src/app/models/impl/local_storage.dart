@@ -11,8 +11,6 @@ class Country {
 
   factory Country.fromJson(Map<String, dynamic> json) =>
       _$CountryFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CountryToJson(this);
 }
 
 @JsonSerializable()
@@ -23,8 +21,6 @@ class CountryList {
 
   factory CountryList.fromJson(Map<String, dynamic> json) =>
       _$CountryListFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CountryListToJson(this);
 }
 
 class LocalStorageData {
