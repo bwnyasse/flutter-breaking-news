@@ -162,3 +162,10 @@ Here are also some additional helpful resources:
 Have you spotted a typo, would you like to fix something, or is there something you’d like to suggest? 
 Browse the source repository and open a pull request. I will do my best to review your proposal in due time.
 
+## Issues & TODO 
+
+[List of issues](https://gitlab.com/bwnyasse/flutter-breaking-news/-/issues)
+
+
+
+
