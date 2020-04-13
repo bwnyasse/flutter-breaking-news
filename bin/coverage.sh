@@ -1,7 +1,14 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+#
+# Script used to run test & code coverage in local or ci
+#
+
 set -e
 
-## ONLY FOR MAC OR LINUX
+CURRENT_DIR=$(pwd)
+
+[[ ! -f "$CURRENT_DIR/pubspec.yaml" ]] && echo 'the script must be run into flutter root directory' && exit 1
+
 
 ################
 ## FLAG VAR  ##

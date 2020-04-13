@@ -19,7 +19,6 @@ platform :android do
             apk_path: "build/app/outputs/apk/qa/release/app-qa-release.apk",
             release_notes_file: "distribution/release-notes.txt",
             testers_file:  "distribution/testers.txt"
-
         )
         finish_build
     end

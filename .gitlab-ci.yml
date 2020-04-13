@@ -7,7 +7,7 @@ unit_test: # Name of the lane
   image: cirrusci/flutter:v1.12.13-hotfix.8
   stage: test
   script:
-    - /bin/sh coverage.sh -i # launch the file in ci env mode
+    - /bin/sh bin/coverage.sh -i # launch the file in ci env mode
   artifacts:
     paths:
       - coverage/
