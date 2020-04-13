@@ -47,10 +47,10 @@ main() {
 
       // Mock for httpclient
       final mockClient = MockClient((request) async {
-        return Response(json.encode(exampleJsonResponse), 200);
+        return Response(json.encode(mockJsonResponse), 200);
       });
       final apiService = ApiService(mockClient, localStorageServiceMock);
-      final expectedResponse = ArticlesResponse.fromJson(exampleJsonResponse);
+      final expectedResponse = ArticlesResponse.fromJson(mockJsonResponse);
       final actualResponse = await apiService.loadTopHeadlinesNews();
       expect(actualResponse, equals(expectedResponse));
     });
@@ -66,7 +66,7 @@ main() {
 
       // Mock for httpclient
       final mockClient = MockClient((request) async {
-        return Response(json.encode(exampleJsonResponse), 500);
+        return Response(json.encode(mockJsonResponse), 500);
       });
       final apiService = ApiService(mockClient, localStorageServiceMock);
       ArticlesResponse response = await apiService.loadTopHeadlinesNews('business');

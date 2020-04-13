@@ -23,18 +23,14 @@
     SOFTWARE.
 */
 
+import 'package:flutter/material.dart';
+import 'package:flutter_breaking_news/src/app/blocs/blocs.dart';
+import 'package:flutter_breaking_news/src/app/models/models.dart';
 import 'package:flutter_breaking_news/src/app/services/services.dart';
 import 'package:mockito/mockito.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-class AuthServiceMock extends Mock implements AuthService {}
-
-class ApiServiceMock extends Mock implements ApiService {}
-
-class LocalStorageServiceMock extends Mock implements LocalStorageService {}
 
 // Example from newsapi.org
-final exampleJsonResponse = {
+final mockJsonResponse = {
   "status": "ok",
   "totalResults": 2,
   "articles": [
@@ -60,3 +56,49 @@ final exampleJsonResponse = {
     }
   ]
 };
+
+LocalStorageData mockLocalStorageData = LocalStorageData(
+  countryFlag: 'ar',
+  apiKey: 'some-api-key',
+);
+
+Map<String, dynamic> mockCountriesAsJson() => <String, dynamic>{
+      "countries": [
+        {"name": "Argentine", "flag": "ar"},
+      ]
+    };
+
+CurrentUser mockUser = CurrentUser(
+    photoUrl: 'fake-photo',
+    email: 'some-email',
+    displayName: 'some-displayName');
+
+class AuthServiceMock extends Mock implements AuthService {}
+
+class ApiServiceMock extends Mock implements ApiService {}
+
+class LocalStorageServiceMock extends Mock implements LocalStorageService {}
+
+class AuthBlocMock extends AuthBloc {
+  final AuthService service;
+  final AuthState initStateToUse;
+  final AuthState state;
+
+  AuthBlocMock({@required this.service, this.initStateToUse, this.state})
+      : super(service: service, initStateToUse: initStateToUse);
+
+  @override
+  Stream<AuthState> mapEventToState(AuthEvent event) async* {
+    if (event is AuthInitEvent) {
+      yield AuthFailedState();
+    } else if (event is AuthLoginWithGoogleEvent) {
+      yield AuthSuccessState(user: mockUser);
+    } else if (event is AuthSuccessEvent) {
+      yield AuthSuccessState(user: mockUser);
+    } else if (event is AuthFailedEvent) {
+      yield AuthFailedState();
+    }
+  }
+}
+
+

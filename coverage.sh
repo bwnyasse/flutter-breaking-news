@@ -42,8 +42,18 @@ launch_test(){
 
     # Remove Generate dart files
     remove_from_coverage -f coverage/lcov.info -r '.g.dart$'
+
+    # Remove unused files
     remove_from_coverage -f coverage/lcov.info -r 'device_utils.dart$'
     remove_from_coverage -f coverage/lcov.info -r 'hack_flutter_settings.dart$'
+
+    # Remove files cover by flutter drive test
+    remove_from_coverage -f coverage/lcov.info -r 'drawer_ctl.dart$'
+    remove_from_coverage -f coverage/lcov.info -r 'home_screen.dart$'
+    remove_from_coverage -f coverage/lcov.info -r 'news_latest.dart$'
+    remove_from_coverage -f coverage/lcov.info -r 'news_category.dart$'
+    remove_from_coverage -f coverage/lcov.info -r 'settings_details.dart$'
+
 }
 
 code_coverage(){
