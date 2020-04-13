@@ -110,8 +110,6 @@ To sign in the application, you must sign in with a google account.
 
 As mentionned in the [Firebase doc](https://firebase.google.com/support/guides/google-android#migrate_your_console_project):
 
->>>
-
 >Firebase manages all of your API settings and credentials through a single configuration file.
 The file is named google-services.json on Android and GoogleService-Info.plist on iOS.
 
