@@ -10,6 +10,6 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 #include "Generated.xcconfig"
 BUNDLE_ID_SUFFIX=.qa
-PRODUCT_BUNDLE_IDENTIFIER=com.stacklabs.FlutterBreakingNews.qa
+PRODUCT_BUNDLE_IDENTIFIER=com.stacklabs.flutterBreakingNews.qa
 FLUTTER_TARGET=lib/main_qa.dart
 APP_NAME=[qa] SL-News

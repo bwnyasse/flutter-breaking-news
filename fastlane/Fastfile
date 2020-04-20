@@ -34,3 +34,83 @@ def finish_build
       )
     end
 end
+
+###########
+## IOS
+
+platform :ios do
+  before_all do
+    if is_ci?
+      puts "This is CI run. Setting custom keychain."
+      ENV['KEYCHAIN_NAME'] = "Temp.keychain"
+      create_keychain(
+        name: ENV['KEYCHAIN_NAME'],
+        password: ENV['KEYCHAIN_NAME'],
+        default_keychain: true,
+        unlock: true,
+        timeout: 3600,
+      )
+    end
+  end
+
+  desc "Submit a new build to Firebase App Distribution"
+  lane :qa do
+    add_badge(dark: true)
+    register_devices(
+        devices_file: "fastlane/devices.txt",
+        team_id: ENV["APPLE_DEVELOPER_TEAM_ID"],
+        username: ENV["FASTLANE_USER"]
+    )
+    match(
+      type: "development",
+      force_for_new_devices: true,
+      #keychain_name: ENV['KEYCHAIN_NAME'],
+      #keychain_password: ENV['KEYCHAIN_NAME']
+    )
+    automatic_code_signing(
+      use_automatic_signing: false,
+      path: "ios/Runner.xcodeproj"
+    )
+    update_project_provisioning(
+      # https://github.com/fastlane/fastlane/issues/15926
+      profile: ENV["sigh_#{ENV["APP_ID"]}_development_profile-path"],
+      build_configuration: "Release-qa",
+      code_signing_identity: "iPhone Distribution",
+      xcodeproj: "ios/Runner.xcodeproj",
+    )
+    set_info_plist_value(
+      path: "ios/Runner/Info.plist",
+      key: "CFBundleVersion",
+      value: ENV["BUILD_NUMBER"]
+    )
+    set_info_plist_value(
+      path: "ios/Runner/Info.plist",
+      key: "CFBundleShortVersionString",
+      value: ENV["VERSION_NUMBER"]
+    )
+    build_ios_app(
+      scheme: "qa",
+      configuration: "Release-qa",
+      xcargs: "-allowProvisioningUpdates",
+      export_options: {
+        signingStyle: "manual",
+        method: "development",
+        provisioningProfiles: {
+          "#{ENV["APP_ID"]}": "match Development #{ENV["APP_ID_APP_STORE"]}"
+        }
+      },
+      output_name: "Runner.ipa",
+      workspace: "ios/Runner.xcworkspace"
+    )
+    firebase_app_distribution(
+      ipa_path: "Runner.ipa",
+      app: ENV["FIREBASE_IOS_TEST_APP_ID"],
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+      release_notes_file: "distribution/release-notes.txt",
+      testers_file:  "distribution/testers.txt"
+    )
+    finish_build
+  end
+
+
+end

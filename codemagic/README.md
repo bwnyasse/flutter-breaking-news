@@ -10,7 +10,7 @@
 
 ### App Store
 
-- APP_ID : bundle id of application e.g. com.stacklabs.FlutterBreakingNews
+- APP_ID : bundle id of application e.g. com.stacklabs.flutterBreakingNews
 - APP_STORE_CONNECT_TEAM_ID
 - APPLE_DEVELOPER_TEAM_ID : used by fastlane match step, this is similar to U9XX9XXXX9
 - FASTLANE_PASSWORD : password used to log in into Apple Developer Console by fastlane
@@ -21,7 +21,6 @@
 - FIREBASE_ANDROID_TEST_APP_ID : take a look at docs [here](https://firebase.google.com/docs/app-distribution/android/distribute-fastlane)
 - FIREBASE_CLI_TOKEN : token used by Firebase CLI, learn more [here](https://firebase.google.com/docs/cli#cli-ci-systems)
 - FIREBASE_IOS_TEST_APP_ID : take a look at docs [here](https://firebase.google.com/docs/app-distribution/ios/distribute-fastlane)
-- FIREBASE_TESTERS - name of testers group that app should be distributed to
 
 #### FIREBASE ACCESS SERVICE KEYS
 

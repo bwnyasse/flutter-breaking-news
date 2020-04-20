@@ -198,7 +198,7 @@ Follow the firebase documentation to create your project and add files with the 
 My package named are : 
 
 - for Android : **com.stacklabs.flutter_breaking_news**
-- for iOS: **com.stacklabs.FlutterBreakingNews**
+- for iOS: **com.stacklabs.flutterBreakingNews**
 
 So, feel free to fork the projet and adapt as you like. 
 
@@ -235,6 +235,7 @@ So, feel free to fork the projet and adapt as you like.
 Here are also some additional helpful resources: 
 
 - [Bloc : a predictable state management library for Dart](https://bloclibrary.dev/#/)
+- [Continuous Integration and Deployment with Flutter and Fastlane](https://medium.com/@arnemolland/continuous-integration-and-deployment-with-flutter-and-fastlane-a927014723e1)
 - [Distribute Flutter app to Firebase and stores from Codemagic](https://roszkowski.dev/2019/flutter-ci-cd-with-firebase-and-codemagic/)
 - [Understand Flutter Flavors](https://medium.com/@animeshjain/build-flavors-in-flutter-android-and-ios-with-different-firebase-projects-per-flavor-27c5c5dac10b)
 - [Running multiple schemes of iOS Apps](https://www.buddybuild.com/blog/running-multiple-schemes-of-ios-apps)

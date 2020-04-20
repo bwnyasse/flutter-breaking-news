@@ -58,3 +58,7 @@ sa/
 # General thing to ignore
 ignore/
 *base64.txt
+
+# generated files
+Runner.app.dSYM.zip
+Runner.ipa
