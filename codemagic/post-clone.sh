@@ -4,10 +4,7 @@
 
 set -e # exit on first failed commandset
 
-export FLAVOR='qa'
-export VERSION_NUMBER='1.0.0'
-export TARGET_FILE="lib/main_$FLAVOR.dart"
-
+source $FCI_BUILD_DIR/codemagic/pre-build.sh
 
 updateKeys() {
 

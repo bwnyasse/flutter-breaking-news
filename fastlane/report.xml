@@ -5,17 +5,67 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000854">
+      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.000895">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: assembleRelease" time="101.717756">
+      <testcase classname="fastlane.lanes" name="01: assembleRelease" time="6.142684">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: firebase_app_distribution" time="25.576864">
+      <testcase classname="fastlane.lanes" name="02: is_ci" time="0.001027">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="03: add_badge" time="5.941071">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="04: register_devices" time="1.375083">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="05: match" time="5.20542">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: automatic_code_signing" time="0.079751">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: update_project_provisioning" time="0.061669">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: set_info_plist_value" time="0.002998">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: set_info_plist_value" time="0.002747">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: build_ios_app" time="96.212858">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: firebase_app_distribution" time="15.388418">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="12: is_ci" time="0.001246">
         
       </testcase>
     

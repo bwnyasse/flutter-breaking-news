@@ -2,7 +2,7 @@
 
 set -e # exit on first failed commandset
 
-source $FCI_BUILD_DIR/codemagic/pre-build.sh
+source pre-build-dev.sh
 
-bundle exec fastlane android qa
+#bundle exec fastlane android qa
 bundle exec fastlane ios qa

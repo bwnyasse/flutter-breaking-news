@@ -1,0 +1,14 @@
+# Apple Developer Portal username
+username("risbonyasse@gmail.com")
+
+# Certificates repo
+git_url("https://gitlab.com/bwnyasse/fastlane-certificates.git")
+git_branch("master")
+storage_mode("git")
+
+# Default signing type, can be: appstore, adhoc, enterprise or development
+type("development")
+
+# App config
+app_identifier("com.stacklabs.flutterBreakingNews.qa")
+
