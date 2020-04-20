@@ -62,3 +62,6 @@ ignore/
 # generated files
 Runner.app.dSYM.zip
 Runner.ipa
+
+# any ssh keys
+ssh/
