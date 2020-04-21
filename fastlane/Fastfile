@@ -96,7 +96,7 @@ platform :ios do
         signingStyle: "manual",
         method: "development",
         provisioningProfiles: {
-          "#{ENV["APP_ID"]}": "match Development #{ENV["APP_ID_APP_STORE"]}"
+          "#{ENV["APP_ID"]}": "match Development #{ENV["APP_ID"]}"
         }
       },
       output_name: "Runner.ipa",
