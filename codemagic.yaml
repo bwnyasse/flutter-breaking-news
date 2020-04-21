@@ -75,7 +75,7 @@ workflows:
       ##
       - flutter build apk --release --target $TARGET_FILE --flavor $FLAVOR --build-name=$VERSION_NUMBER
         --build-number=$BUILD_NUMBER
-      - find . -name "Podfile" -execdir pod install \;
+      #- find . -name "Podfile" -execdir pod install \;
       - flutter build ios --release --target $TARGET_FILE --flavor $FLAVOR --build-name=$VERSION_NUMBER
         --build-number=$BUILD_NUMBER --no-codesign
       ##
