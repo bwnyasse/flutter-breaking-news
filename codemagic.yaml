@@ -69,7 +69,7 @@ workflows:
       - |
         #!/usr/bin/env sh
 
-        #/bin/sh $FCI_BUILD_DIR/codemagic/pre-build.sh
+        /bin/sh $FCI_BUILD_DIR/codemagic/pre-build.sh
       ##
       ## BUILD
       ##
@@ -84,7 +84,7 @@ workflows:
       - |
         #!/usr/bin/env sh
 
-        #/bin/sh $FCI_BUILD_DIR/codemagic/post-build.sh
+        /bin/sh $FCI_BUILD_DIR/codemagic/post-build.sh
     artifacts:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/*.aab
