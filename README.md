@@ -7,10 +7,24 @@
     <th>Coverage with codecov.io</th>
   </tr>
   <tr>
-    <td><img src="https://img.shields.io/static/v1?label=License&message=MIT&color=lightgrey"/></td>
-    <td><img src="https://gitlab.com/bwnyasse/flutter-breaking-news/badges/master/pipeline.svg"/></td>
-    <td><img src="https://gitlab.com/bwnyasse/flutter-breaking-news/badges/master/coverage.svg"/></td>
-    <td><img src="https://codecov.io/gl/bwnyasse/flutter-breaking-news/branch/master/graph/badge.svg"/></td>
+    <td>
+        <img src="https://img.shields.io/static/v1?label=License&message=MIT&color=lightgrey"/>
+    </td>
+    <td>
+        <a href="https://gitlab.com/bwnyasse/flutter-breaking-news/commits/master" target="_blank">
+            <img src="https://gitlab.com/bwnyasse/flutter-breaking-news/badges/master/pipeline.svg"/>
+        </a>
+    </td>
+    <td>
+        <a href="https://gitlab.com/bwnyasse/flutter-breaking-news/commits/master" target="_blank">
+            <img src="https://gitlab.com/bwnyasse/flutter-breaking-news/badges/master/coverage.svg"/>
+        </a>
+    </td>
+    <td>
+        <a href="https://codecov.io/gl/bwnyasse/flutter-breaking-news" target="_blank">
+            <img src="https://codecov.io/gl/bwnyasse/flutter-breaking-news/branch/master/graph/badge.svg"/>
+        </a>
+    </td>
   </tr>
 </table>
 
@@ -21,9 +35,19 @@
     <th>Firebase App Distribtion</th>
   </tr>
   <tr>
-    <td><img src="https://img.shields.io/static/v1?label=Flutter&message=ANDROID-IOS&color=informational?style=plastic&logo=flutter&logoColor=blue"/></td>
-    <td><img src="https://api.codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/status_badge.svg"/></td>
-    <td><img src="https://api.codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/status_badge.svg"/></td>
+    <td>
+        <img src="https://img.shields.io/static/v1?label=Flutter&message=ANDROID-IOS&color=informational?style=plastic&logo=flutter&logoColor=blue"/>
+    </td>
+    <td>
+        <a href="https://codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/latest_build" target="_blank">
+            <img src="https://api.codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/status_badge.svg"/>
+        </a>
+    </td>
+    <td>
+        <a href="https://codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/latest_build" target="_blank">
+            <img src="https://api.codemagic.io/apps/5e8a523364e0bd58fe01acbe/5e8a523364e0bd58fe01acbd/status_badge.svg"/>
+        </a>
+    </td>
   </tr>
 </table>
 
@@ -62,7 +86,7 @@ setup Flavors in Flutter :
  
 - [Flavors in Flutter with Fastlane ](https://roszkowski.dev/2019/flutter-flavors/)
 
-In the code , I've implemented 3 flavors : **dev**, **qa**, **prod**
+In the code, I've implemented 3 flavors : **dev**, **qa**, **prod**
 
 <br/>
 
@@ -73,8 +97,18 @@ In the code , I've implemented 3 flavors : **dev**, **qa**, **prod**
 </p>
 
 
-I used [Fastlane](https://fastlane.tools/) to automate apps deployments to QA environment. 
+[Fastlane](https://fastlane.tools/)  is an open source platform aimed at simplifying Android and iOS deployment.
+Fastlane lets you automate every aspect of your development and release workflow.
 
+
+My goal is to used Fastlane to automate apps deployments to my QA environment.
+
+I've setup [fastlane match](https://docs.fastlane.tools/actions/match/), the **new approach to iOS code signing: Share 
+one code signing identity across your development team to simplify your codesigning setup and prevent code signing issues.**
+
+
+**match** creates all required certificates & provisioning profiles and stores them 
+in a separate private git repository. 
 
 See my `faslane/` folder for more
 
@@ -103,7 +137,25 @@ Following is a sample fastlane code use in the project to to deploy the android 
 
 See my `faslane/` and `distribution/` folders for more
 
+
+#### Invitation Email:
+
+When my pipeline build succeed, the testers receive an invitation email as the following : 
+
+<p align="center">
+<img src="doc/firebase-app-distribution-invitation.png" alt="drawing"/>
+</p>
+
+#### Invitation apps:
+
+According to my environment, I can see all the versions of my application available for testing in my QA environment. 
+
+<p align="center">
+<img src="doc/firebase-app-distribution-app.png" alt="drawing"/>
+</p>
+
 <br/>
+
 
 ### 4. **Codemagic**:
 
@@ -114,8 +166,13 @@ See my `faslane/` and `distribution/` folders for more
 [Codemagic](https://codemagic.io/) offers me the possibility to implement **CI/CD**. It starts with my git repository hosted on **Gitlab**. 
 
 
-My secret keys to connect to Firebase are not save inside the repository. So I am using Codemagic environments variables 
-and **post-clone** step to generate all the keys I need to build the project. 
+I am using [codemagic environment variables](https://docs.codemagic.io/building/environment-variables/) for my build.
+I prefer to use a [codemagic.yaml](https://docs.codemagic.io/building/yaml/) file for customizing the build 
+and configuring all my workflows.
+
+With this way, all my secret keys for connecting to Apple, Firebase and so on are encrypted. 
+
+For example, the **post-clone** step allows me to generate all the keys I need to build the project. 
 
 Following is a sample way to generate key in a post-clone codemagic step 
 
@@ -124,6 +181,13 @@ Following is a sample way to generate key in a post-clone codemagic step
     echo $GOOGLE_SERVICES_JSON_BASE64 | base64 --decode > $GOOGLE_SERVICES_JSON_PATH
     
 See my `codemagic/` folder for more
+
+
+I would recommand you to try codemagic for your future CI/CD with Flutter. Following is an example of a pipeline state in Codemagic.
+
+<p align="center">
+<img src="doc/codemagic-flutter-state.png" alt="drawing" width="300"/>
+</p>
 
 
 ### 5. **Codecov**:
@@ -140,7 +204,6 @@ I am testing the application with the following command :
         $> flutter test --coverage
         
  And I am using [codecov](https://codecov.io/) for my coverage reports.
-
 
 
 ## Code & Design Patterns
@@ -181,7 +244,19 @@ To sign in the application, you must sign in with a **google account**.
 
 ## How to use
 
-### 1. Setup Firebase 
+### 1. Get News API Key
+
+You must create an account to [News API](https://newsapi.org/) to retrieve an API Key. 
+
+You will need to provide this API Key in the application, in the followng settings screen : 
+
+
+<p align="center">
+<img src="doc/api-key-settings-screen.png" alt="drawing" width="350"/>
+</p>
+
+
+### 2. Setup Firebase 
 
 As mentionned in the [Firebase doc](https://firebase.google.com/support/guides/google-android#migrate_your_console_project):
 
@@ -202,7 +277,7 @@ My package named are :
 
 So, feel free to fork the projet and adapt as you like. 
 
-### 2. Run or Build the application : 
+### 3. Run or Build the application : 
 
 - To run the app ( FLAVOR can be `dev`, `qa` or  `prod`)
 
@@ -218,7 +293,9 @@ So, feel free to fork the projet and adapt as you like.
                             --build-number=$BUILD_NUMBER \
                             --flavor $FLAVOR
 
-   or 
+   or   
+        
+        # Why --no-codesign ? I'm using fastlane to build a sign version of the ios application
         
         $> flutter build ios --no-codesign  --release \
                              -t lib/main_$FLAVOR.dart \
@@ -234,6 +311,9 @@ So, feel free to fork the projet and adapt as you like.
 
 Here are also some additional helpful resources: 
 
+- [Codemagic CI/CD and security](https://blog.codemagic.io/codemagic-ci-cd-and-security/)
+- [Flutter + Firebase + Codemagic](https://blog.codemagic.io/practical-guide-flutter-firebase-codemagic/)
+- [Setup Fastlane MATCH for iOS](https://medium.com/@danielvivek2006/setup-fastlane-match-for-ios-6260758a9a4e)
 - [Bloc : a predictable state management library for Dart](https://bloclibrary.dev/#/)
 - [Continuous Integration and Deployment with Flutter and Fastlane](https://medium.com/@arnemolland/continuous-integration-and-deployment-with-flutter-and-fastlane-a927014723e1)
 - [Distribute Flutter app to Firebase and stores from Codemagic](https://roszkowski.dev/2019/flutter-ci-cd-with-firebase-and-codemagic/)
