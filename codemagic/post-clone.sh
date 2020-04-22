@@ -21,6 +21,14 @@ updateKeys() {
     #GOOGLE_SERVICES_PLIST_TST_PATH="$FCI_BUILD_DIR/ios/Runner/Firebase/qa/GoogleService-Info.plist"
     GOOGLE_SERVICES_PLIST_TST_PATH="$FCI_BUILD_DIR/ios/Runner/GoogleService-Info.plist"
     echo $GOOGLE_SERVICES_PLIST_TST_BASE64 | base64 --decode > $GOOGLE_SERVICES_PLIST_TST_PATH
+
+
+    echo $SSH_KEY_FOR_FASTLANE_MATCH_BASE64 | base64 --decode > /tmp/bkey
+
+    # adding custom ssh key to access private repository
+    chmod 600 /tmp/bkey
+    cp /tmp/bkey ~/.ssh/bkey
+    ssh-add ~/.ssh/bkey
 }
 
 installFirebase() {

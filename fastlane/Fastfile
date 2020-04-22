@@ -64,8 +64,8 @@ platform :ios do
     match(
       type: "development",
       force_for_new_devices: true,
-      #keychain_name: ENV['KEYCHAIN_NAME'],
-      #keychain_password: ENV['KEYCHAIN_NAME']
+      keychain_name: ENV['KEYCHAIN_NAME'],
+      keychain_password: ENV['KEYCHAIN_NAME']
     )
     automatic_code_signing(
       use_automatic_signing: false,
@@ -96,7 +96,7 @@ platform :ios do
         signingStyle: "manual",
         method: "development",
         provisioningProfiles: {
-          "#{ENV["APP_ID"]}": "match Development #{ENV["APP_ID_APP_STORE"]}"
+          "#{ENV["APP_ID"]}": "match Development #{ENV["APP_ID"]}"
         }
       },
       output_name: "Runner.ipa",
