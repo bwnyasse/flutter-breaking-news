@@ -56,7 +56,7 @@
 
  <img src="doc/flutter-firebase.png" alt="drawing" width="100"/>
 
-Another Flutter Open Source project.
+Another Flutter Open Source project : an indepth overview for your **CI/CD** pipeline with Flutter. 
 
 The application will display the breaking news using [News API](https://newsapi.org/)
 
