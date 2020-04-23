@@ -8,7 +8,7 @@
   </tr>
   <tr>
     <td>
-        <img src="https://img.shields.io/static/v1?label=License&message=MIT&color=lightgrey"/>
+        <img src="https://img.shields.io/static/v1?label=License&message=MIT&color=blue"/>
     </td>
     <td>
         <a href="https://gitlab.com/bwnyasse/flutter-breaking-news/commits/master" target="_blank">
