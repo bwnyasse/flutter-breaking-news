@@ -52,9 +52,10 @@
 </table>
 
 
+<img src="doc/banner.gif" width="100%"/>
+ 
 # flutter_breaking_news
 
- <img src="doc/flutter-firebase.png" alt="drawing" width="100"/>
 
 Another Flutter Open Source project : an indepth overview for your **CI/CD** pipeline with Flutter. 
 
