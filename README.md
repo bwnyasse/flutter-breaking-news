@@ -123,7 +123,7 @@ See my `faslane/` folder for more
 ### 3. **Firebase App Distribution**:
 
 <p align="center">
-<img src="doc/firebase-app-distribution.png" alt="drawing" width="300"/>
+<img src="doc/firebase-app-distribution.png" alt="drawing" width="400"/>
 </p>
 
 
@@ -174,7 +174,7 @@ According to my environment, I can see all the versions of my application availa
 
 I am using [codemagic environment variables](https://docs.codemagic.io/building/environment-variables/) for my build.
 I prefer to use a [codemagic.yaml](https://docs.codemagic.io/building/yaml/) file for customizing the build 
-and configuring all my workflows.
+and configuring all my workflows (  _You will find a `.codemagic.yaml` in the root of the project._ )
 
 With this way, all my secret keys for connecting to Apple, Firebase and so on are encrypted. 
 
@@ -199,7 +199,7 @@ I would recommand you to try codemagic for your future CI/CD with Flutter. Follo
 ### 5. **Codecov**:
 
 <p align="center">
-<img src="doc/codecov.png" alt="drawing" width="100"/>
+<img src="doc/codecov.png" alt="drawing" width="200"/>
 </p>
 
 Well, it is nice to test your flutter code , but it is better to have to setup the code coverage. 
@@ -210,8 +210,29 @@ I am testing the application with the following command :
         $> flutter test --coverage
         
  And I am using [codecov](https://codecov.io/) for my coverage reports.
+ 
+ In the root folder of the project, I have a `.codecov.yml` for the coverage configuration.
 
 
+### 6. **Gitlab CI**:
+
+<p align="center">
+<img src="doc/gitlab.png" alt="drawing" width="300"/>
+</p>
+
+In the root folder of the project, I have a `.gitlab-ci.yml`. Gitlab uses this file for CI/CD. 
+Once I commit a code and push it to Gitlab, it should run a job.
+
+I am using Gitlab to build application for every push made on every branch except for a branch named **release**.
+
+My gitlab pipeline does the following : 
+
+  - test my flutter application 
+  - build the code coverage 
+  - deploy the coverage result 
+  
+So the continuous deployement ( CD ) part is made with Codemagic as mention before.
+ 
 ## Code & Design Patterns
 
 ###  1. **BLOC**:
