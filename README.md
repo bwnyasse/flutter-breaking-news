@@ -89,6 +89,11 @@ setup Flavors in Flutter :
 
 In the code, I've implemented 3 flavors : **dev**, **qa**, **prod**
 
+<p align="center">
+<img src="doc/flavor-impl.png" alt="drawing" />
+</p>
+
+
 <br/>
 
 ### 2. **Fastlane**:
