@@ -1,4 +1,3 @@
-
 <table style="width:100%">
   <tr>
     <th>License</th>
@@ -51,19 +50,17 @@
   </tr>
 </table>
 
-
 <img src="doc/banner.gif" width="100%"/>
  
 # flutter_breaking_news
 
+Another Flutter Open Source project: an in-depth overview for your **CI/CD** pipeline with Flutter.
 
-Another Flutter Open Source project : an indepth overview for your **CI/CD** pipeline with Flutter. 
-
-The application will display the breaking news using [News API](https://newsapi.org/)
+The application will display breaking news using the [News API](https://newsapi.org/)
 
 ## App Screenshot
 
-Here are some screenshots of the running application :
+Here are some screenshots of the running application:
 
 ![screenshot-android](doc/screenshot-android.png)
 
@@ -71,28 +68,27 @@ Here are some screenshots of the running application :
 
 ## Technologies
 
-###  1. **Flutter Flavors**:
+### 1. **Flutter Flavors**:
 
 <p align="center">
 <img src="doc/flavor.png" alt="drawing" width="300"/>
 </p>
 
-It is a good practice to build separate apps for different environment ( dev, prod, ...).
-In case of mobile apps , the best way to have these separate configurations is usage of **flavors**
+It is a good practice to build separate apps for different environments ( dev, prod, ...).
+In case of mobile apps, the best way to have these separate configurations is by using **flavors**.
 
 The concept of flavors is taken from Android apps and can be applied to iOS using **schemes**.
 
-Thanks to [Dominik Roszkowski](https://github.com/orestesgaolin) for the wonderful guide that helps me 
-setup Flavors in Flutter : 
- 
+Thanks to [Dominik Roszkowski](https://github.com/orestesgaolin) for the wonderful guide that helped me
+setup Flavors in Flutter:
+
 - [Flavors in Flutter with Fastlane ](https://roszkowski.dev/2019/flutter-flavors/)
 
-In the code, I've implemented 3 flavors : **dev**, **qa**, **prod**
+In the code, I've implemented 3 flavors: **dev**, **qa**, **prod**.
 
 <p align="center">
 <img src="doc/flavor-impl.png" alt="drawing" />
 </p>
-
 
 <br/>
 
@@ -102,21 +98,18 @@ In the code, I've implemented 3 flavors : **dev**, **qa**, **prod**
 <img src="doc/fastlane.png" alt="drawing" width="200"/>
 </p>
 
-
-[Fastlane](https://fastlane.tools/)  is an open source platform aimed at simplifying Android and iOS deployment.
+[Fastlane](https://fastlane.tools/) is an open source platform aimed at simplifying Android and iOS deployment.
 Fastlane lets you automate every aspect of your development and release workflow.
 
+My goal is to use Fastlane to automate app deployment to my QA environment.
 
-My goal is to used Fastlane to automate apps deployments to my QA environment.
-
-I've setup [fastlane match](https://docs.fastlane.tools/actions/match/), the **new approach to iOS code signing: Share 
+I've setup [fastlane match](https://docs.fastlane.tools/actions/match/), the **new approach to iOS code signing: Share
 one code signing identity across your development team to simplify your codesigning setup and prevent code signing issues.**
 
+**match** creates all required certificates & provisioning profiles and stores them
+in a separate private git repository.
 
-**match** creates all required certificates & provisioning profiles and stores them 
-in a separate private git repository. 
-
-See my `faslane/` folder for more
+See my `faslane/` folder for more.
 
 <br/>
 
@@ -126,12 +119,11 @@ See my `faslane/` folder for more
 <img src="doc/firebase-app-distribution.png" alt="drawing" width="400"/>
 </p>
 
-
 [Firebase App Distribution](https://firebase.google.com/docs/app-distribution) is my QA environment.
-I am using the [fastlane plugin for Firebase App Distribution](https://github.com/fastlane/fastlane-plugin-firebase_app_distribution) 
+I am using the [fastlane plugin for Firebase App Distribution](https://github.com/fastlane/fastlane-plugin-firebase_app_distribution)
 to distribute apps to trusted testers.
 
-Following is a sample fastlane code use in the project to to deploy the android version of the app to Firebase App Distribution
+Below is a sample fastlane code used in the project to deploy the android version of the app to Firebase App Distribution.
 
         firebase_app_distribution(
             app: ENV["FIREBASE_ANDROID_TEST_APP_ID"],
@@ -141,12 +133,11 @@ Following is a sample fastlane code use in the project to to deploy the android 
             testers_file:  "distribution/testers.txt"
         )
 
-See my `faslane/` and `distribution/` folders for more
-
+See my `faslane/` and `distribution/` folders for more.
 
 #### Invitation Email:
 
-When my pipeline build succeed, the testers receive an invitation email as the following : 
+When my pipeline build is succesful, the testers receive an invitation email as the following:
 
 <p align="center">
 <img src="doc/firebase-app-distribution-invitation.png" alt="drawing"/>
@@ -154,7 +145,7 @@ When my pipeline build succeed, the testers receive an invitation email as the f
 
 #### Invitation apps:
 
-According to my environment, I can see all the versions of my application available for testing in my QA environment. 
+According to my environment, I can see all the versions of my application available for testing in my QA environment.
 
 <p align="center">
 <img src="doc/firebase-app-distribution-app.png" alt="drawing"/>
@@ -162,39 +153,35 @@ According to my environment, I can see all the versions of my application availa
 
 <br/>
 
-
 ### 4. **Codemagic**:
 
 <p align="center">
 <img src="doc/codemagic-flutter.png" alt="drawing" width="300"/>
 </p>
 
-[Codemagic](https://codemagic.io/) offers me the possibility to implement **CI/CD**. It starts with my git repository hosted on **Gitlab**. 
-
+[Codemagic](https://codemagic.io/) offers me the possibility to implement **CI/CD**. It starts with my git repository hosted on **Gitlab**.
 
 I am using [codemagic environment variables](https://docs.codemagic.io/building/environment-variables/) for my build.
-I prefer to use a [codemagic.yaml](https://docs.codemagic.io/building/yaml/) file for customizing the build 
-and configuring all my workflows (  _You will find a `.codemagic.yaml` in the root of the project._ )
+I prefer to use a [codemagic.yaml](https://docs.codemagic.io/building/yaml/) file for customizing the build
+and configuring all my workflows ( _You will find a `.codemagic.yaml` in the root of the project._ )
 
-With this way, all my secret keys for connecting to Apple, Firebase and so on are encrypted. 
+By doing this, all my secret keys for connecting to Apple, Firebase and so on are encrypted.
 
-For example, the **post-clone** step allows me to generate all the keys I need to build the project. 
+For example, the **post-clone** step allows me to generate all the keys I need to build the project.
 
-Following is a sample way to generate key in a post-clone codemagic step 
+The following is a sample way to generate key in a post-clone codemagic step:
 
     echo "--- Generate Google Service key for Android"
     GOOGLE_SERVICES_JSON_PATH="$FCI_BUILD_DIR/android/app/google-services.json"
     echo $GOOGLE_SERVICES_JSON_BASE64 | base64 --decode > $GOOGLE_SERVICES_JSON_PATH
-    
-See my `codemagic/` folder for more
 
+See my `codemagic/` folder for more.
 
-I would recommand you to try codemagic for your future CI/CD with Flutter. Following is an example of a pipeline state in Codemagic.
+I would recommand you to try codemagic for your future CI/CD with Flutter. The following is an example of a pipeline state in Codemagic.
 
 <p align="center">
 <img src="doc/codemagic-flutter-state.png" alt="drawing" width="300"/>
 </p>
-
 
 ### 5. **Codecov**:
 
@@ -202,17 +189,15 @@ I would recommand you to try codemagic for your future CI/CD with Flutter. Follo
 <img src="doc/codecov.png" alt="drawing" width="200"/>
 </p>
 
-Well, it is nice to test your flutter code , but it is better to have to setup the code coverage. 
+Well, it is nice to test your flutter code, but it is better to have to setup the code coverage.
 
-I am testing the application with the following command : 
+I am testing the application with the following command:
 
-    
         $> flutter test --coverage
-        
- And I am using [codecov](https://codecov.io/) for my coverage reports.
- 
- In the root folder of the project, I have a `.codecov.yml` for the coverage configuration.
 
+And I am using [codecov](https://codecov.io/) for my coverage reports.
+
+In the root folder of the project, I have a `.codecov.yml` for the coverage configuration.
 
 ### 6. **Gitlab CI**:
 
@@ -220,44 +205,42 @@ I am testing the application with the following command :
 <img src="doc/gitlab.png" alt="drawing" width="300"/>
 </p>
 
-In the root folder of the project, I have a `.gitlab-ci.yml`. Gitlab uses this file for CI/CD. 
+In the root folder of the project, I have a `.gitlab-ci.yml`. Gitlab uses this file for CI/CD.
 Once I commit a code and push it to Gitlab, it should run a job.
 
 I am using Gitlab to build application for every push made on every branch except for a branch named **release**.
 
-My gitlab pipeline does the following : 
+My gitlab pipeline does the following:
 
-  - test my flutter application 
-  - build the code coverage 
-  - deploy the coverage result 
-  
-So the continuous deployement ( CD ) part is made with Codemagic as mention before.
- 
+- test my flutter application
+- build the code coverage
+- deploy the coverage result
+
+So the continuous deployement ( CD ) part is made with Codemagic as mentioned before.
+
 ## Code & Design Patterns
 
-###  1. **BLOC**:
+### 1. **BLOC**:
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/felangel/bloc/master/docs/assets/bloc_architecture.png" alt="drawing" width="350"/>
 </p>
 
-
-BLoC a.k.a **Business Logic Components** is a design pattern presented by Paolo Soares and Cong hui, from Google at the DartConf 2018.
+BLoC a.k.a **Business Logic Components** is a design pattern presented by Paolo Soares and Cong Hui, from Google at the DartConf 2018.
 
 So I used Bloc, for the **state management** of the application. This design pattern helps to separate presentation from business logic.
 
-I am using the well know [bloc library](https://github.com/felangel/bloc) for Dart & Flutter in this project.
+I am using the well known [bloc library](https://github.com/felangel/bloc) for Dart & Flutter in this project.
 
-### 2. JSON using code generation libraries 
+### 2. JSON using code generation libraries
 
 <p align="center">
 <img src="doc/flutter-serialize.png" alt="drawing" width="250"/>
 </p>
 
+I am big fan of code generation when it comes to consuming API data. According to the official documentation about [JSON and Serialization](https://flutter.dev/docs/development/data-and-backend/json).
 
-I am big fan of code generation when it comes to consuming API data. According to the official documentation about [JSON and Serialization](https://flutter.dev/docs/development/data-and-backend/json)
-
-I am using **json_annotation** + **json_serializable** to retrieve news from [News API](https://newsapi.org/)
+I am using **json_annotation** + **json_serializable** to retrieve news from [News API](https://newsapi.org/).
 
 ### 3. Authentication
 
@@ -265,78 +248,71 @@ I am using **json_annotation** + **json_serializable** to retrieve news from [Ne
 <img src="doc/firebase-google-signin.png" alt="drawing" width="350"/>
 </p>
 
-The auth process is handle serveless way with Google Cloud project named **[Firebase](https://firebase.google.com/)**. 
-To sign in the application, you must sign in with a **google account**. 
-
+The auth process is handled in a serveless way with a Google Cloud project named **[Firebase](https://firebase.google.com/)**.
+To sign in the application, you must sign in with a **google account**.
 
 ## How to use
 
 ### 1. Get News API Key
 
-You must create an account to [News API](https://newsapi.org/) to retrieve an API Key. 
+You must create an account with the [News API](https://newsapi.org/) to retrieve an API Key.
 
-You will need to provide this API Key in the application, in the followng settings screen : 
-
+You will need to provide this API Key in the application, in the followng settings screen:
 
 <p align="center">
 <img src="doc/api-key-settings-screen.png" alt="drawing" width="350"/>
 </p>
 
-
-### 2. Setup Firebase 
+### 2. Setup Firebase
 
 As mentionned in the [Firebase doc](https://firebase.google.com/support/guides/google-android#migrate_your_console_project):
 
->Firebase manages all of your API settings and credentials through a single configuration file.
-The file is named google-services.json on Android and GoogleService-Info.plist on iOS.
+> Firebase manages all of your API settings and credentials through a single configuration file.
+> The file is named google-services.json on Android and GoogleService-Info.plist on iOS.
 
 It makes that my .gitignore will exclude **google-services.json** and **GoogleService-Info.plist**
 
-Follow the firebase documentation to create your project and add files with the following path : 
+Follow the firebase documentation to create your project and add files with the following path:
 
-- $PROJECT-DIR/ios/Runner/**GoogleService-Info.plist**
-- $PROJECT-DIR/android/app/**google-services.json**
+- \$PROJECT-DIR/ios/Runner/**GoogleService-Info.plist**
+- \$PROJECT-DIR/android/app/**google-services.json**
 
-My package named are : 
+My packages named are:
 
 - for Android : **com.stacklabs.flutter_breaking_news**
 - for iOS: **com.stacklabs.flutterBreakingNews**
 
-So, feel free to fork the projet and adapt as you like. 
+So, feel free to fork the projet and adapt as you like.
 
-### 3. Run or Build the application : 
+### 3. Run or Build the application :
 
-- To run the app ( FLAVOR can be `dev`, `qa` or  `prod`)
-
+- To run the app ( FLAVOR can be `dev`, `qa` or `prod`)
 
         $> FLAVOR=dev && flutter run  --flavor $FLAVOR -t lib/main_$FLAVOR.dart
-    
-- To build the app ( FLAVOR can be `dev`, `qa` or  `prod`)    
 
-        
+- To build the app ( FLAVOR can be `dev`, `qa` or `prod`)
+
         $> flutter build apk --release \
                             -t lib/main_$FLAVOR.dart \
                             --build-name=$BUILD_NAME \
                             --build-number=$BUILD_NUMBER \
                             --flavor $FLAVOR
 
-   or   
-        
+  or
+
         # Why --no-codesign ? I'm using fastlane to build a sign version of the ios application
-        
+
         $> flutter build ios --no-codesign  --release \
                              -t lib/main_$FLAVOR.dart \
                              --build-name=$BUILD_NAME \
                              --build-number=$BUILD_NUMBER \
                              --flavor $FLAVOR
-    
 
-## Credits 
-
+## Credits
 
 [Dominik Roszkowski](https://roszkowski.dev/) has some amazing articles that help me during the coding process.
 
-Here are also some additional helpful resources: 
+Here are also some additional helpful resources:
 
 - [Codemagic CI/CD and security](https://blog.codemagic.io/codemagic-ci-cd-and-security/)
 - [Flutter + Firebase + Codemagic](https://blog.codemagic.io/practical-guide-flutter-firebase-codemagic/)
@@ -348,16 +324,11 @@ Here are also some additional helpful resources:
 - [Running multiple schemes of iOS Apps](https://www.buddybuild.com/blog/running-multiple-schemes-of-ios-apps)
 - [Multiple Firebase environments with Flutter](https://www.tengio.com/blog/multiple-firebase-environments-with-flutter/)
 
-
 ## Contribute
 
-Have you spotted a typo, would you like to fix something, or is there something you’d like to suggest? 
+Have you spotted a typo, would you like to fix something, or is there something you’d like to suggest?
 Browse the source repository and open a pull request. I will do my best to review your proposal in due time.
 
-## Issues & TODO 
+## Issues & TODO
 
 [List of issues](https://gitlab.com/bwnyasse/flutter-breaking-news/-/issues)
-
-
-
-
